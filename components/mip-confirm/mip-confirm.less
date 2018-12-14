@@ -1,0 +1,131 @@
+mip-fixed.wrapper {
+  z-index: 1000;
+  margin: 0 auto;
+  text-align: center;
+  top: 33%;
+  width: 90%;
+  line-height: 1.5;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+mip-fixed.mask {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mip-confirm {
+
+  &-mydialog {
+    animation: 240ms fadein;
+    -webkit-animation: 240ms fadein;
+  }
+
+  &-toast {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    margin: 0 auto;
+    background: white;
+
+    /* border-radius: 10px; */
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 100%;
+    height: auto;
+  }
+
+  &-title {
+    position: relative;
+    padding: 20px 20px 10px;
+    margin-bottom: -25px;
+    text-align: center;
+  }
+
+  &-title div {
+    margin: 0;
+    padding: 0;
+    font-weight: 400px;
+    font-size: 18px;
+  }
+
+  &-content {
+    margin: 25px 20px;
+    color: #666;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  &-footer-btn {
+    flex: 1;
+
+    /* display: block; */
+    position: relative;
+    display: inline-block;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    height: 44px;
+    line-height: 44px;
+    color: #007aff;
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  .mip-img {
+    margin-top: 10px;
+  }
+
+  &-toast p {
+    padding: 10px 0;
+    white-space: normal;
+    line-height: 1.24rem;
+  }
+
+  &-footer {
+    display: flex;
+    position: relative;
+    font-size: 0;
+    border: 0;
+  }
+
+  &-footer-left {
+    border-right-width: 0;
+    border-left-width: 0;
+    border-bottom-width: 0;
+  }
+
+  &-footer-right {
+    border-right-width: 0;
+    border-bottom-width: 0;
+  }
+
+  &-footer-bottom {
+    border-right-width: 0;
+    border-left-width: 0;
+    border-bottom-width: 0;
+  }
+}

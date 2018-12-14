@@ -1,0 +1,21 @@
+let {
+  CustomElement
+} = MIP
+
+export default class MipHtmlOS extends CustomElement {
+  build () {
+    let os = this.element.getAttribute('os') || ''
+    let isOS = false
+    let osUA = navigator.userAgent.toLowerCase()
+    if (os === 'android') {
+      isOS = osUA.indexOf('android') > -1
+    } else if (os === 'ios') {
+      isOS = !!osUA.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/i)
+    }
+    if (isOS) {
+      this.element.style.display = 'block'
+    } else {
+      this.element.parentNode.removeChild(this.element)
+    }
+  }
+}

@@ -15,11 +15,6 @@
     "fix:style": "stylelint ./**/*.{vue,css,less,md} --fix",
     "lint:test": "eslint ./components/mip-inservice-login/mip-inservice-login.vue"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mip-project/mip-components.git"

@@ -88,7 +88,7 @@ export default class MipAudio extends CustomElement {
 
     // 事件绑定：获取总播放时长，更新DOM
     // FIXME: 由于ios10手机百度不执行loadedmetadata函数，
-    // 魅族自带浏览器在播放前获取总播放时长为0.需要修改
+    // 魅族、小米自带浏览器在播放前获取总播放时长为0.需要修改
     this.audioElement
       .addEventListener('loadedmetadata', this.applyTotalTime.bind(this), false)
 

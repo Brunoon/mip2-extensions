@@ -107,7 +107,7 @@
     </li>
 
     <li>
-      <p> 范围值、横向、下方显示、范围0-100、 步长1、预设20-60</p>
+      <p> 范围值、横向、下方显示、范围0-100、 步长5、预设20-60</p>
       <mip-range class="her" id="slider2">
         <script type="application/json">
           {
@@ -116,6 +116,7 @@
             dotSize: 16,
             min: 0,
             max: 100,
+            fixRange: true,
             step: 5,
             tipDir: "bottom"
           }
@@ -157,6 +158,7 @@
             min: 0,
             max: 100,
             step: 3,
+            fixRange: true,
             dotStyle: {
               "background": "url('https://cambrian-images.cdn.bcebos.com/580ce3eeaa75ee03a916db594e47ae4e_1516170693203.jpeg') center center no-repeat",
               "background-size": "100%"

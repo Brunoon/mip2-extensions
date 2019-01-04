@@ -105,7 +105,7 @@ export default class MipAppBanner extends CustomElement {
    *  是不是ios的app调起
    */
   iosAppBanner () {
-    if (!this.canShowBanner()) {
+    if (this.canShowBanner()) {
       this.element.remove()
     }
     this.metaTag = document.head.querySelector('meta[name=apple-itunes-app]')

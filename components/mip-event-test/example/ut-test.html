@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>test</div>
+  <script src="https://c.mipcdn.com/static/v2/mip.js"></script>
+  <script>
+    element = document.createElement('mip-fixed')
+    element.setAttribute('data-slide', '')
+    element.setAttribute('type', 'bottom')
+    document.body.appendChild(element)
+    let content = document.createElement('div')
+    content.style.height = window.innerHeight + 200 + 'px'
+    content.style.with = '10px'
+    document.body.appendChild(content)
+    // setTimeout(() => {
+    //   window.scrollTo(0, 0)
+    //   window.scrollTo(0, 1000)
+    //   window.MIP.viewport.trigger('scroll')
+    // }, 100)
+    window.addEventListener('scroll', () => {console.log('scroll-----')})
+    document.body.removeChild(content)
+    document.body.appendChild(content)
+    document.body.removeChild(element)
+  </script>
+</body>
+</html>

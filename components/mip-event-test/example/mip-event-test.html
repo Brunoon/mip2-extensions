@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html mip>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>MIP page</title>
+    <link rel="canonical" href="对应的原页面地址">
+    <link rel="stylesheet" href="https://c.mipcdn.com/static/v2/mip.css">
+    <style mip-custom>
+    /* 自定义样式 */
+      mip-event-test-b {
+        margin-top: 20px
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <mip-event-test on="try:testB.addTip"></mip-event-test>
+      <mip-event-test-b id='testB'></mip-event-test-b>
+      <mip-fixed type="top" data-slide>
+          顶部悬浮 - 向下滑动隐藏
+      </mip-fixed>
+    </div>
+    <script src="https://c.mipcdn.com/static/v2/mip.js"></script>
+    <script src="/mip-event-test/mip-event-test.js"></script>
+  </body>
+</html>

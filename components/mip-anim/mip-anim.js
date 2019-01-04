@@ -19,7 +19,7 @@ export default class MipAnim extends CustomElement {
       // 有默认图且有gif图情况  gif加载成功前显示默认图
       if (this.src) {
         promiseIf({ src: this.src, alt: this.alt }).then(imageobj => {
-          util.css(placeholderImg, {display: 'none'})
+          util.css(placeholderImg, {display: 'none!important'})
           container.appendChild(imageobj)
         })
       }

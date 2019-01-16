@@ -101,6 +101,10 @@ export default class MIPGroupSelection extends CustomElement {
 
   }
 
+  /**
+   * 选项绑定点击事件，点击修改 MIP data 并触发 selected 事件
+   *
+   */
   bindItemClickEvent () {
     util.event.delegate(this.element, '.mip-group-selection-item', 'click', e => {
       let itemData = e.target && e.target.dataset

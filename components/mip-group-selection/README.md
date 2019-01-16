@@ -13,7 +13,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ### 基本用法
 
-按照如下示例配置城市数据。
+按照如下示例配置城市数据（使用本地数据）。
 
 ```html
 <mip-group-selection class="mip-hidden">
@@ -95,8 +95,8 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
       <mip-fixed class="mip-group-selection-sidebar-wrapper">
         <div class="mip-group-selection-sidebar">
           {{#list}}
-            <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
-            {{/list}}
+            <div class="mip-group-selection-item" data-target-anchor="{{key}}">{{key}}</div>  
+          {{/list}}
           </div>
       </mip-fixed>
 		</template>
@@ -107,7 +107,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ### 基本用法
 
-按照如下示例配置城市数据。
+按照如下示例配置城市数据（使用远程数据）。
 
 [notice]`data-src`属于前后端交互请求。由于 MIP-Cache 为 HTTPs 环境，`data-src` 要求支持 HTTPs.
 

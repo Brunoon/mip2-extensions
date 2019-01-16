@@ -11,34 +11,27 @@ export default class MipAnim extends CustomElement {
   }
 
   initialize () {
-    let container = document.createElement('div')
+    let el = this.element
     let placeholderImg = this.element.querySelector('mip-img')
-    // 有默认图情况
-    if (placeholderImg) {
-      container.appendChild(placeholderImg)
-      // 有默认图且有gif图情况  gif加载成功前显示默认图
-      if (this.src) {
-        promiseIf({ src: this.src, alt: this.alt }).then(imageobj => {
-          util.css(placeholderImg, {display: 'none!important'})
-          container.appendChild(imageobj)
-        })
-      }
-    // 只有gif图
-    } else {
-      promiseIf({ src: this.src, alt: this.alt }).then(imageobj => {
-        container.appendChild(imageobj)
+    if (this.src) {
+      // 加载gif图
+      promiseIf({ src: this.src, alt: this.alt }).then(imageObj => {
+        // 隐藏默认图
+        if (placeholderImg) {
+          util.css(placeholderImg, {display: 'none'})
+        }
+        el.appendChild(imageObj)
       })
     }
-    this.element.appendChild(container)
 
     // 判断图片是否加载成功
     function promiseIf (data) {
-      return new Promise((resolve, reject) => {
-        let images = document.createElement('img')
-        images.src = data.src
-        images.alt = data.alt
-        images.onload = () => {
-          resolve(images)
+      return new Promise(resolve => {
+        let image = document.createElement('img')
+        image.src = data.src
+        image.alt = data.alt
+        image.onload = () => {
+          resolve(image)
         }
       })
     }

@@ -12,9 +12,11 @@ export default class MipEventTest extends CustomElement {
       height: '100px',
       backgroundColor: '#eee'
     })
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       console.log('a execute try')
-      viewer.eventAction.execute('try', this.element, 'native')
+      event.value = [1, 2, 3]
+      event.tmp = {'a': 1, 'b': 2}
+      viewer.eventAction.execute('try', this.element, event)
     })
     this.element.appendChild(button)
   }

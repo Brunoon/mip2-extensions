@@ -5,14 +5,16 @@ let {
   util
 } = MIP
 
+const log = util.log('mip-appdl')
+
 export default class MipAppdl extends CustomElement {
   constructor (...args) {
     super(...args)
-    let ele = this.element
-    this.src = ele.getAttribute('src') || ''
-    this.downbtntext = ele.getAttribute('downbtntext') || ''
-    this.downloadUrl = ele.getAttribute(this.getUserAgent() + '-downsrc') || ''
-    this.texttip = ele.getAttribute('texttip') || ''
+    let el = this.element
+    this.src = el.getAttribute('src') || ''
+    this.downBtnText = el.getAttribute('downbtntext') || ''
+    this.downloadUrl = el.getAttribute(this.getUserAgent() + '-downsrc') || ''
+    this.textTip = el.getAttribute('texttip') || ''
   }
 
   initialize () {
@@ -33,34 +35,38 @@ export default class MipAppdl extends CustomElement {
               ${showText}
             </div>
             <div class="mip-appdl-downbtn">
-              <a target="_blank">${this.downbtntext}</a>
+              <a href=${this.downloadUrl} target="_blank">${this.downBtnText}</a>
             </div>
             <div class="mip-appdl-closebutton"></div>
           </div>
         </div>
       `
 
-    this.element.innerHTML = html
-    this.element.querySelector('.mip-appdl-closebutton').addEventListener('click', () => {
-      this.element.parentNode.removeChild(this.element)
-    })
     if (this.downloadUrl) {
-      let aTag = this.element.querySelector('a')
-      aTag.setAttribute('href', this.downloadUrl)
+      this.element.append(util.dom.create(html))
+      this.element.querySelector('.mip-appdl-closebutton').addEventListener('click', () => {
+        this.element.parentNode.removeChild(this.element)
+      })
     }
   }
 
   getShowText () {
-    let lines = [this.texttip]
-    try {
-      // 字符串转数组
-      lines = util.jsonParse(this.texttip)
-    } catch (e) {
-      console.warn('[mip-appdl] texttip 属性格式不正确', e)
+    let lines = []
+    let showText = []
+    if (this.textTip) {
+      try {
+        // 字符串转数组
+        /* eslint-disable no-new-func */
+        lines = new Function('return ' + this.textTip)()
+      } catch (e) {
+        log.warn('texttip 属性格式不正确!')
+      }
     }
     // 限定最大行数两行
-    lines = lines.slice(0, 2)
-    return lines.map(line => '<p>' + line + '</p>').join('')
+    for (let i = 0; i < Math.min(2, lines.length); i++) {
+      showText.push('<p>' + lines[i] + '</p>')
+    }
+    return showText.join('')
   }
 
   getUserAgent () {

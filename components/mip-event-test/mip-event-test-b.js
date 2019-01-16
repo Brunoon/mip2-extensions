@@ -5,7 +5,7 @@ let {
 
 export default class MipEventTestB extends CustomElement {
   build () {
-    this.addEventAction('addTip', (event) => {
+    this.addEventAction('addTip', (event, str) => {
       let tip = document.createElement('div')
       util.css(tip, {
         width: '50px',
@@ -14,6 +14,7 @@ export default class MipEventTestB extends CustomElement {
       })
       this.element.appendChild(tip)
       console.log('b add tip')
+      console.log(str)
     })
   }
 }

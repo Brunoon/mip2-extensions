@@ -26,6 +26,14 @@
 </mip-fixed>
 ```
 
+### 设置延时
+
+```html
+<mip-fixed type="gototop">
+  <mip-gototop delay='500'></mip-gototop>
+</mip-fixed>
+```
+
 ## 属性
 
 ### threshold
@@ -35,3 +43,11 @@
 取值范围：`Number`  
 单位：`px`  
 默认值：`200`
+
+### delay
+
+说明：设置按钮显示时间
+必选项：否
+取值范围：`Number`
+单位：`px`
+默认值：`0`

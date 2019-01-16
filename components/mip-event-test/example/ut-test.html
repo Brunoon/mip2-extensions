@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://c.mipcdn.com/static/v2/mip.css">
   <title>Document</title>
 </head>
 <body>
@@ -12,7 +13,8 @@
   <script>
     element = document.createElement('mip-fixed')
     element.setAttribute('data-slide', '')
-    element.setAttribute('type', 'bottom')
+    element.setAttribute('type', 'top')
+    element.innerHTML = '<span>top</span>'
     document.body.appendChild(element)
     let content = document.createElement('div')
     content.style.height = window.innerHeight + 200 + 'px'
@@ -23,10 +25,16 @@
     //   window.scrollTo(0, 1000)
     //   window.MIP.viewport.trigger('scroll')
     // }, 100)
-    window.addEventListener('scroll', () => {console.log('scroll-----')})
-    document.body.removeChild(content)
-    document.body.appendChild(content)
-    document.body.removeChild(element)
+    // window.addEventListener('scroll', () => {console.log('scroll-----')})
+    // document.body.removeChild(content)
+    // document.body.appendChild(content)
+    // document.body.removeChild(element)
+    element2 = document.createElement('mip-fixed')
+    element2.setAttribute('data-slide', '')
+    element2.setAttribute('type', 'bottom')
+    element2.innerHTML = '<span>bottom</span>'
+    document.body.appendChild(element2)
+
   </script>
 </body>
 </html>

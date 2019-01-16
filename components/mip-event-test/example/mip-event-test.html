@@ -15,7 +15,7 @@
   </head>
   <body>
     <div>
-      <mip-event-test on="try:testB.addTip"></mip-event-test>
+      <mip-event-test on="try:testB.addTip(event.value, 10, event.tmp, event.tmp.a, event.size)"></mip-event-test>
       <mip-event-test-b id='testB'></mip-event-test-b>
       <mip-fixed type="top" data-slide>
           顶部悬浮 - 向下滑动隐藏

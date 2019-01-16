@@ -5,12 +5,12 @@ let {
   util
 } = MIP
 
-const ANIMATION_TIMEOUT = 400
+const ANIMATION_TIMEOUT = 300
 
 export default class MipSidebar extends CustomElement {
   constructor (...args) {
     super(...args)
-    // 限制side属性是left或者right
+    // 限制 side 属性是 left 或者 right
     this.side = this.element.getAttribute('side')
     if (this.side !== 'left' && this.side !== 'right') {
       this.side = 'left'
@@ -20,12 +20,7 @@ export default class MipSidebar extends CustomElement {
     this.isOpen = false
     this.running = false
     this.bodyOverflow = 'hidden'
-    this.content = null
     this.mask = null
-  }
-
-  prerenderAllowed () {
-    return true
   }
 
   toggle (e) {
@@ -33,7 +28,7 @@ export default class MipSidebar extends CustomElement {
   }
 
   /**
-   * [open 打开 sidebar和 mask]
+   * 打开 sidebar 和 mask
    */
   open () {
     if (this.isOpen) {
@@ -41,9 +36,10 @@ export default class MipSidebar extends CustomElement {
     }
     this.isOpen = true
     util.css(this.element, {display: 'block'})
+    util.css(this.mask, {display: 'block'})
 
     setTimeout(() => {
-      this.content.classList.add('show')
+      this.element.classList.add('show')
       this.mask.classList.add('show')
     }, 0)
 
@@ -57,22 +53,25 @@ export default class MipSidebar extends CustomElement {
   }
 
   /**
-   * [close 关闭 sidebar和 mask]
+   * 关闭 sidebar 和 mask
    *
    * @param {Object} e 点击事件
    */
   close (e) {
+    e.preventDefault()
     if (!this.running) {
       return
     }
+
     this.running = false
 
-    this.content.classList.remove('show')
+    this.element.classList.remove('show')
     this.mask.classList.remove('show')
 
     setTimeout(() => {
       this.isOpen = false
       util.css(this.element, {display: 'none'})
+      util.css(this.mask, {display: 'none'})
     }, ANIMATION_TIMEOUT)
 
     document.body.style.overflow = this.bodyOverflow
@@ -80,36 +79,24 @@ export default class MipSidebar extends CustomElement {
   }
 
   build () {
+    let el = this.element
     if (!this.isOpen) {
-      this.element.setAttribute('aria-hidden', 'true')
+      el.setAttribute('aria-hidden', 'true')
     }
 
-    let fixed = document.createElement('mip-fixed')
-    fixed.className = 'sidebar'
-    fixed.setAttribute('still', '')
-    fixed.setAttribute('type', 'top')
+    this.mask = document.createElement('div')
+    this.mask.className = 'mip-sidebar-mask'
+    el.parentNode.appendChild(this.mask)
 
-    let content = document.createElement('div')
-    content.className = 'mip-sidebar-content'
-    for (let child of [...this.element.childNodes]) {
-      content.appendChild(child)
-    }
-    fixed.appendChild(content)
-    this.content = content
-
-    let mask = document.createElement('div')
-    mask.className = 'mip-sidebar-mask'
-    fixed.appendChild(mask)
-    this.mask = mask
-
-    let wrapper = document.createElement('div')
-    wrapper.appendChild(fixed)
-    this.element.appendChild(wrapper)
-
-    mask.addEventListener('touchmove', e => {
+    document.addEventListener('keydown', e => {
+      if (e.keyCode === 27) {
+        this.close(e)
+      }
+    }, false)
+    this.mask.addEventListener('touchmove', e => {
       e.preventDefault()
-    })
-    mask.addEventListener('click', e => {
+    }, false)
+    this.mask.addEventListener('click', e => {
       this.close(e)
     })
     this.addEventAction('toggle', e => {

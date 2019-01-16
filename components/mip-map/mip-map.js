@@ -7,6 +7,8 @@ let {
   sandbox
 } = MIP
 
+const log = util.log('mip-map')
+
 export default class MipMap extends CustomElement {
   constructor (...args) {
     super(...args)
@@ -19,7 +21,6 @@ export default class MipMap extends CustomElement {
     this.info = config.info
     this.getPosition = config['get-position'] === true
     this.dataOnlyGetSdk = config['data-only-get-sdk'] === true
-    this.hideMap = config['hide-map'] === true
 
     this.map = null
     this.point = {}
@@ -30,21 +31,11 @@ export default class MipMap extends CustomElement {
   jsonParse (json) {
     try {
       return util.jsonParse(json)
+      // return JSON.parse(json)
     } catch (e) {
-      console.error(e)
+      log.warn(e)
       return {}
     }
-  }
-
-  /**
-   * 隐藏地图
-   *
-   */
-  hideMapView () {
-    util.css(this.element, {
-      width: 0,
-      height: 0
-    })
   }
 
   /**
@@ -116,7 +107,7 @@ export default class MipMap extends CustomElement {
         }
         this.marker = new BMap.Marker(this.point)
         this.map.addOverlay(this.marker)
-        this.map.centerAndZoom(this.point, 15)
+        this.map.centerAndZoom(this.point, 16)
 
         // 配置弹层
         this.setInfoWindow()
@@ -152,6 +143,15 @@ export default class MipMap extends CustomElement {
     for (let key in this.controls) {
       if (this.controls.hasOwnProperty(key)) {
         let params = this.controls[key] || {}
+
+        // 识别 BMAP_* 常量
+        Object.keys(params).forEach(prop => {
+          let val = params[prop]
+          if (typeof val === 'string' && val.indexOf('BMAP_') !== -1) {
+            params[prop] = window[val]
+          }
+        })
+
         let Fn = BMap[key]
         Fn && this.map.addControl(new Fn(params))
       }
@@ -189,10 +189,7 @@ export default class MipMap extends CustomElement {
 
     // 初始化地图
     this.map = new BMap.Map('allmap')
-    this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 15)
-
-    // 隐藏地图
-    this.hideMap && this.hideMapView()
+    this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11)
 
     // 自动定位、或者手动定位
     this.getPosition ? this.getCurrentLocation() : this.searchLocation()
@@ -236,10 +233,6 @@ export default class MipMap extends CustomElement {
   firstInviewCallback () {
     let wrapper = document.createElement('div')
     wrapper.id = 'allmap'
-    wrapper.classList.add('wrapper')
-    if (this.hideMap) {
-      wrapper.classList.add('hideMap')
-    }
     this.element.appendChild(wrapper)
 
     this.getMapJDK().then(() => {

@@ -8,7 +8,7 @@ let {
 
 export default class MipTabs extends CustomElement {
   static get observedAttributes () {
-    return ['resetTab']
+    return ['reset-tab']
   }
 
   constructor (...args) {
@@ -169,19 +169,24 @@ export default class MipTabs extends CustomElement {
     }
 
     // 事件委托
-    labelContainer.addEventListener('click', e => {
-      e = e || window.event
-      let target = e.target || e.srcElement
-      // 确保target为对应item的div
-      if (target.tagName === 'SPAN') {
-        target = target.parentNode
-      } else if (target.className === 'mip-tabs-label-container') {
-        target = target.firstElementChild
-      }
+    // labelContainer.addEventListener('click', e => {
+    //   e = e || window.event
+    //   let target = e.target || e.srcElement
+    //   // 确保target为对应item的div
+    //   if (target.tagName === 'SPAN') {
+    //     target = target.parentNode
+    //   } else if (target.className === 'mip-tabs-label-container') {
+    //     target = target.firstElementChild
+    //   }
 
-      if (target.dataset.index) {
-        this.changeTab(target.dataset.index, target.hasAttribute('disabled'))
-      }
+    //   if (target.dataset.index) {
+    //     this.changeTab(target.dataset.index, target.hasAttribute('disabled'))
+    //   }
+    // })
+
+    let self = this
+    util.event.delegate(labelContainer, '.mip-tabs-label', 'click', function () {
+      self.changeTab(this.dataset.index, this.hasAttribute('disabled'))
     })
 
     this.initTab()

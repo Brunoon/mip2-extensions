@@ -4,7 +4,8 @@ let {
 
 export default class MipHtmlOS extends CustomElement {
   build () {
-    let os = this.element.getAttribute('os') || ''
+    let el = this.element
+    let os = el.getAttribute('os') || ''
     let isOS = false
     let osUA = navigator.userAgent.toLowerCase()
     if (os === 'android') {
@@ -13,9 +14,9 @@ export default class MipHtmlOS extends CustomElement {
       isOS = !!osUA.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/i)
     }
     if (isOS) {
-      this.element.style.display = 'block'
+      el.style.display = 'block'
     } else {
-      this.element.parentNode.removeChild(this.element)
+      el.parentNode.removeChild(el)
     }
   }
 }

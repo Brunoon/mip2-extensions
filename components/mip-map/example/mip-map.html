@@ -18,8 +18,7 @@
     <script type="application/json">
       {
         "ak": "hKhuzfFBrcL6zGm4s6b371NDxaUrhFPl",
-        "hide-map": false,
-        "get-position": true,
+        "get-position": false,
         "location": {
           "province": "北京",
           "city": "北京市",
@@ -27,8 +26,13 @@
           "street": "故宫博物馆"
         },
         "controls": {
-          "NavigationControl": {},
-          "MapTypeControl": {}
+          "NavigationControl": {
+            "showZoomInfo": true,
+            "enableGeolocation": true
+          },
+          "MapTypeControl": {
+            "type": "BMAP_MAPTYPE_CONTROL_HORIZONTAL"
+          }
         },
         "info": {
           "width": 250,
@@ -39,7 +43,7 @@
 
     </script>
   </mip-map>
-  <script src="https://bos.nj.bpc.baidu.com/assets/mip/projects/mip.js"></script>
+  <script src="https://c.mipcdn.com/static/v2/mip.js"></script>
   <script src="/mip-map/mip-map.js"></script>
 </body>
 

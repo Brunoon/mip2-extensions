@@ -95,8 +95,8 @@ export default class MipNovelVideo extends CustomElement {
   }
 
   isShow () {
-    // return this.videourl && this.tsurl && isSF && detector.getMobileSystemVersion() && isShouldVideo
-    return true
+    return this.videourl && this.tsurl && isSF && detector.getMobileSystemVersion() && isShouldVideo
+    // return true
   }
 
   isOriginalVideo () {

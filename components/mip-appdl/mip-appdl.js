@@ -7,7 +7,7 @@ let {
 
 const log = util.log('mip-appdl')
 
-export default class MipAppdl extends CustomElement {
+export default class MIPAppdl extends CustomElement {
   constructor (...args) {
     super(...args)
     let el = this.element

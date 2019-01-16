@@ -84,11 +84,11 @@ let preProcess = {
   }
 }
 
-export default class MipAppBanner extends CustomElement {
+export default class MIPAppBanner extends CustomElement {
   /**
    * 判断打开平台
    *
-   * @return {boolean}
+   * @returns {boolean}
    */
   canShowBanner () {
     let isSysBanner = platform.isSafari() || platform.isBaidu() // || platform.isQQ();

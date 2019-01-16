@@ -9,7 +9,7 @@ let {
 
 const log = util.log('mip-map')
 
-export default class MipMap extends CustomElement {
+export default class MIPMap extends CustomElement {
   constructor (...args) {
     super(...args)
     let ele = this.element

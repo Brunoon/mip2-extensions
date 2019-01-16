@@ -7,7 +7,7 @@ let {
 
 const ANIMATION_TIMEOUT = 300
 
-export default class MipSidebar extends CustomElement {
+export default class MIPSidebar extends CustomElement {
   constructor (...args) {
     super(...args)
     // 限制 side 属性是 left 或者 right

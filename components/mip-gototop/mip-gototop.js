@@ -6,7 +6,7 @@ let {
 } = MIP
 const requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame
 
-export default class MipGoToTop extends CustomElement {
+export default class MIPGoToTop extends CustomElement {
   constructor (...args) {
     super(...args)
     this.threshold = this.element.getAttribute('threshold') || 200

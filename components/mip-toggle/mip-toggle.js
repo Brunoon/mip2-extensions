@@ -3,7 +3,7 @@ let {
   util
 } = MIP
 
-export default class MIipToggle extends CustomElement {
+export default class MIPToggle extends CustomElement {
   constructor (...args) {
     super(...args)
     let el = this.element

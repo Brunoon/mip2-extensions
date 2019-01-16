@@ -2,7 +2,7 @@ let {
   CustomElement
 } = MIP
 
-export default class MipHtmlOS extends CustomElement {
+export default class MIPHtmlOS extends CustomElement {
   build () {
     let el = this.element
     let os = el.getAttribute('os') || ''

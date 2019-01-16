@@ -9,7 +9,7 @@ const STYLE = [
   'color'
 ]
 
-export default class MipLink extends CustomElement {
+export default class MIPLink extends CustomElement {
   // 判断是否禁止缓存
   isNoCache () {
     let cacheMeta = document.querySelector('meta[property="mip:use_cache"]')

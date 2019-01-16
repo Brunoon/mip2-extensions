@@ -3,7 +3,7 @@ let {
   util
 } = MIP
 
-export default class MipAnim extends CustomElement {
+export default class MIPAnim extends CustomElement {
   constructor (...args) {
     super(...args)
     this.src = this.element.getAttribute('src') || ''

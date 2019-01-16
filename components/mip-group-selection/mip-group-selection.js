@@ -14,7 +14,7 @@ export default class MIPGroupSelection extends CustomElement {
   /**
    * 获取数据
    *
-   * @returns {Object}     Promise
+   * @returns {Object} Promise
    */
   getData () {
     let groupData
